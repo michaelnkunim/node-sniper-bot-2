@@ -4,7 +4,7 @@ const fileUpload = require("express-fileupload");
 const hbsEngine = require("express-handlebars");
 const proxy = require('express-http-proxy');
 
-const marketDataRoutes = require('./routes/marketDataRoutes');
+const sniperRoutes = require('./routes/sniperRoutes');
 const decryptMiddleWare = require('./middlewares/decryptData');
 
 const unless = function (middleware, ...paths) {
@@ -39,7 +39,7 @@ async function startServer(config) {
         res.json('Dashboard Service v23.11.17');
     });
 
-    app.use('/market-data', marketDataRoutes);
+    app.use('/solana-bot', sniperRoutes);
     // View Engine
     app.engine("handlebars", hbsEngine.engine());
     app.set("view engine", "handlebars");

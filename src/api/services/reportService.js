@@ -8,7 +8,6 @@ async function getReport(req, queryFn) {
     const indexConfig = indexDefinations.getInvoicesConfig(req.userInfo.sellerCode);
     if (indexConfig) {
         const data = await elasticProcess.getDocuments(indexConfig, 0, 0, queryFn(reqData.filters));
-        console.log(data)
         return data;
     }
 }

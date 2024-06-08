@@ -1,10 +1,10 @@
-const marketDataService = require('../services/marketDataService');
+const sniperService = require('../services/sniperService');
 const responsePreprocessor = require('../middlewares/responseProcessor');
 
 
-async function getGainersAndLosers(req, res, serviceFn) {
+async function snipe(req, res, serviceFn) {
     try {
-        const data =  await marketDataService.getGainersAndLosers(req);
+        const data =  await sniperService.snipe(req);
        
         responsePreprocessor.sendSuccessResult(res, data, req);
     } catch (err) {
@@ -13,5 +13,5 @@ async function getGainersAndLosers(req, res, serviceFn) {
 }
 
 module.exports = {
-    getGainersAndLosers
+    snipe
 };
