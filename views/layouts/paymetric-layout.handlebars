@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <script src="{{{serverUrl}}}static/paymetricassets/XIFrame-1.2.0.js" crossorigin="anonymous" async></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" async></script>
+    <title>XiIntercept eCommerce - IFrame</title>
+    <style>
+        .site-header {
+            background-color: rgba(0, 0, 0, .85);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            backdrop-filter: saturate(180%) blur(20px);
+        }
+
+        .site-header a {
+            color: #999;
+            transition: ease-in-out color .15s;
+        }
+
+        .site-header a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        iframe {
+            border: none
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        {{{body}}}
+    </div>
+</body>
+
+</html>

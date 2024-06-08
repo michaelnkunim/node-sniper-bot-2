@@ -1,0 +1,55 @@
+<script type="text/javascript">
+    window.onload = () => {
+    }
+
+    function frameLoaded(frame) {
+        frame.style.display = "";
+    }
+
+    function processParams() {
+        var iframe = document.getElementsByName('paymetricIframe');
+        $XIFrame.submit({
+            iFrameId: 'paymetricIframe',
+            targetUrl: '{{{responseData.frameURL}}}',
+            onSuccess: function (msg) {
+                const msgData = JSON.parse(msg);
+                if (msgData && msgData.data && msgData.data.HasPassed) {
+                    $.ajax({
+                        type: "POST",
+                        url: `{{{serverUrl}}}views/paymetric/status/{{{id}}}`,
+                        data: {{{responseData.stringify}}},
+                        success: (data) => {
+                            console.log(data);
+                            const cardData = JSON.parse(data);
+                            swal(`Card ${cardData['Card Number']} saved successfully !!!`);
+                        },
+                        error: (err) => {
+                            console.error(err);
+                        },
+                        complete: (data, status) => {
+                            console.log(data, status);
+                        },
+                        dataType: 'text',
+                    });
+                }
+                console.log(msg);
+            },
+            onError: function (msg) {
+                console.error(msg);
+
+            }
+        });
+    }
+</script>
+{{#if responseData.statusCode}}
+<div class="alert alert-danger my-2" role="alert">
+    {{{responseData.statusCode}}} - {{{responseData.message}}}
+</div>
+{{/if}}
+{{#if responseData.frameURL}}
+<div class="my-1">
+    <iframe class="embed-responsive-item" src="{{{responseData.frameURL}}}" id="paymetricIframe" style="display: none; height: 50%; width: 50%"
+        onload="frameLoaded(this);"></iframe>
+</div>
+<button type="button" class="btn btn-danger mt-2" id="btnSubmit" onclick="processParams()">Submit</button>
+{{/if}}

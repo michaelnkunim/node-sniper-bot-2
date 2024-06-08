@@ -1,0 +1,13 @@
+<div class="alert alert-info my-2" role="alert">
+    {{#if fp}}
+        {{#if userData.isFirstVisit}}
+            Welcome user, this is your first visit.
+        {{else}}
+            Welcome back, your last visit was on {{{userData.lastVisitTime}}}
+        {{/if}}
+    {{else}}
+        <h1>No Fingerprint data available.</h1>
+    {{/if}}
+    <br>
+    Current time {{{currentTime}}}
+</div>
